@@ -16,7 +16,6 @@ The `Benchmarks Upload` actions the runs [website_regen.py](https://github.com/e
 ## Contributing
 Run the dev server with `npm install && npx vite`.
 
-
 ### Building static sites from Vue
 Run `npm run build` to build the static site.
 The output will be in the `dist` directory.
