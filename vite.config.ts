@@ -3,8 +3,10 @@ import serveStatic from 'serve-static'
 import { ViteDevServer, defineConfig, type Plugin } from 'vite'
 import vuetify from 'vite-plugin-vuetify'
 
-const PORT = 5179
-const FS_URL = isDevBuild() ? `http://localhost:${PORT}` : '/'
+const LOCAL_FS_PORT = 5179
+const REPO_NAME = '/engine-benchmark-results/'
+const REPO_URL = 'https://akirathan.github.io/engine-benchmark-results/'
+const FS_URL = isDevBuild() ? `http://localhost:${LOCAL_FS_PORT}` : REPO_URL
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,9 +16,9 @@ export default defineConfig({
     DEFAULT_DAYS_TO_FETCH: 30,
     MAX_LABELS: 10,
   },
-  base: isDevBuild() ? '/': '/engine-benchmark-results/',
+  base: isDevBuild() ? '/': REPO_NAME,
   server: {
-    port: PORT,
+    port: LOCAL_FS_PORT,
     strictPort: true,
   },
 })
