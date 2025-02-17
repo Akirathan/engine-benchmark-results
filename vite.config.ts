@@ -5,7 +5,7 @@ import vuetify from 'vite-plugin-vuetify'
 
 const LOCAL_FS_PORT = 5179
 const REPO_NAME = '/engine-benchmark-results/'
-const REPO_URL = 'https://akirathan.github.io/engine-benchmark-results/'
+const REPO_URL = 'https://akirathan.github.io/engine-benchmark-results'
 const FS_URL = isDevBuild() ? `http://localhost:${LOCAL_FS_PORT}` : REPO_URL
 
 // https://vitejs.dev/config/
