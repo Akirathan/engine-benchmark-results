@@ -4,7 +4,7 @@ import { ViteDevServer, defineConfig, type Plugin } from 'vite'
 import vuetify from 'vite-plugin-vuetify'
 
 const PORT = 5179
-const FS_URL = process.env.NODE_ENV === 'development' ? `http://localhost:${PORT}` : '/'
+const FS_URL = isDevBuild() ? `http://localhost:${PORT}` : '/'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,6 +14,7 @@ export default defineConfig({
     DEFAULT_DAYS_TO_FETCH: 30,
     MAX_LABELS: 10,
   },
+  base: isDevBuild() ? '/': '/engine-benchmark-results/',
   server: {
     port: PORT,
     strictPort: true,
@@ -27,4 +28,8 @@ function fsServer(): Plugin {
       server.middlewares.use('/cache', serveStatic('/cache'))
     },
   }
+}
+
+function isDevBuild(): boolean {
+  return process.env.NODE_ENV === 'development'
 }
