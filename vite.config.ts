@@ -2,6 +2,7 @@ import vue from '@vitejs/plugin-vue'
 import serveStatic from 'serve-static'
 import { ViteDevServer, defineConfig, type Plugin } from 'vite'
 import vuetify from 'vite-plugin-vuetify'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 const LOCAL_FS_PORT = 5179
 const REPO_NAME = '/engine-benchmark-results/'
@@ -10,7 +11,20 @@ const FS_URL = isDevBuild() ? `http://localhost:${LOCAL_FS_PORT}` : 'http://loca
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), vuetify({ autoImport: true }), fsServer()],
+  plugins: [
+    vue(),
+    vuetify({ autoImport: true }),
+    fsServer(),
+    // Copy all the cache files to `dist/cache`.
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'cache/*',
+          dest: 'cache'
+        }
+      ]
+    })
+  ],
   define: {
     FS_URL: JSON.stringify(FS_URL),
     DEFAULT_DAYS_TO_FETCH: 30,
