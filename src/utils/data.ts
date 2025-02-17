@@ -94,9 +94,7 @@ async function processSingleFile(content: string): Promise<void> {
  * Fetches the index file.
  */
 export async function loadIndex(): Promise<Index> {
-  const indexResp = await fetch(`${FS_URL}/cache/index.json`, {
-    mode: 'same-origin',
-  })
+  const indexResp = await fetch(`${FS_URL}/cache/index.json`)
   const indexContent = await indexResp.json()
   const index = Index.fromJson(indexContent)
   console.log('Index loaded')
@@ -134,9 +132,7 @@ async function fetchAndProcessFile(filename: string): Promise<void> {
     return
   }
   console.log('Fetching file: ', filename)
-  const resp = await fetch(FS_URL + '/' + filename, {
-    mode: 'same-origin'
-  })
+  const resp = await fetch(FS_URL + '/' + filename)
   const content = await resp.text()
   await processSingleFile(content)
   cacheFileStore.markFileAsProcessed(filename)
