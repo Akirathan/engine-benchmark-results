@@ -29,6 +29,7 @@ export default defineConfig({
     FS_URL: JSON.stringify(FS_URL),
     DEFAULT_DAYS_TO_FETCH: 30,
     MAX_LABELS: 10,
+    MIN_DATE: JSON.stringify('2022-12-13'),
   },
   base: isDevBuild() ? '/': REPO_NAME,
   server: {
